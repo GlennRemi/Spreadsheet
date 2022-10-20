@@ -1,0 +1,2 @@
+// quaryselector all *
+// spread syntac
