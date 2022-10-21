@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
   initiate();
   drawing();
-  // cellTracker();
+  cellTracker();
   //   calulate();
 });
