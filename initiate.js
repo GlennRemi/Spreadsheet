@@ -5,6 +5,7 @@ function initiate() {
   initiateRowInput.placeholder = "Insert row amount";
   initiateRowInput.type = "number";
   initiateRowInput.min = "1";
+  initiateRowInput.max = "50";
 
   /* Collum input*/
   const initiateCollumInput = document.createElement("input");
@@ -12,6 +13,7 @@ function initiate() {
   initiateCollumInput.placeholder = "Insert collum amount";
   initiateCollumInput.type = "number";
   initiateCollumInput.min = "1";
+  initiateCollumInput.max = "26";
 
   /* Button input*/
   const initiateBtnInput = document.createElement("button");

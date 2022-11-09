@@ -20,7 +20,7 @@ function drawing() {
     }
     /* Selecting borders and disabling them with number/letter ID for user*/
     const borderEdit = document.querySelectorAll("input");
-    const collumIndex = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const collumIndex = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const collumIndexArray = collumIndex.split("");
     for (let borderIndex = 0; borderIndex < collumInput; borderIndex++) {
       borderEdit[
@@ -52,10 +52,37 @@ function drawing() {
     firstBlock.disabled = true;
     firstBlock.removeAttribute("class");
 
+    /* Listner on cell */
+    const cellTracker = document.querySelectorAll(".grid");
+    let cellValueArray = new Array(cellTracker.length);
+    for (
+      let userCellIndex = 0;
+      userCellIndex < cellTracker.length;
+      userCellIndex++
+    ) {
+      cellTracker[userCellIndex].value;
+      cellTracker[userCellIndex].addEventListener("keyup", function () {
+        console.log(cellTracker[userCellIndex].value);
+        cellValueArray.splice(
+          userCellIndex,
+          1,
+          cellTracker[userCellIndex].value
+        );
+      });
+    }
+
     /* debug button */
     const deBuggy = document.createElement("button");
     deBuggy.classList.add("debugcheck");
     deBuggy.innerText = "debug me";
     document.body.appendChild(deBuggy);
+    document
+      .querySelector(".debugcheck")
+      .addEventListener("click", function () {
+        console.log(`test + ${cellValueArray}`);
+        console.log(cellTracker.length);
+      });
+
+    return cellTracker;
   });
 }
