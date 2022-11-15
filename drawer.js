@@ -12,6 +12,7 @@ function drawing() {
     initiateBtn.remove();
 
     /* Drawing up all cells */
+
     for (let indexRow = -1; indexRow < rowInput; indexRow++) {
       const lineBreak = document.createElement("div");
       lineBreak.classList.add("linebreak");
@@ -67,10 +68,8 @@ function drawing() {
     */
     const cellTracker = document.querySelectorAll(".grid");
 
-    let UsercellId = [[], [], []];
-
-    UsercellId[1] = new Array(cellTracker.length);
-    UsercellId[2] = new Array(cellTracker.length);
+    userCellId[1] = new Array(cellTracker.length).join(".").split(".");
+    userCellId[2] = new Array(cellTracker.length).join(".").split(".");
 
     /* Detection array for detect cell-value-cordinates in calculation */
     for (
@@ -81,7 +80,7 @@ function drawing() {
       let gridRowNumber = gridCollumIndex + 1;
       for (let gridRowIndex = 0; gridRowIndex < collumInput; gridRowIndex++) {
         let gridCollumLetter = collumIndexArray[gridRowIndex];
-        UsercellId[0].push(gridCollumLetter + gridRowNumber);
+        userCellId[0].push(gridCollumLetter + gridRowNumber);
       }
     }
 
@@ -92,32 +91,37 @@ function drawing() {
       userCellIndex++
     ) {
       cellTracker[userCellIndex].value;
-      cellTracker[userCellIndex].addEventListener("keyup", function () {
-        console.log(cellTracker[userCellIndex].value);
-        UsercellId[1].splice(
+      cellTracker[userCellIndex].addEventListener("focusin", function () {
+        cellTracker[userCellIndex].value = userCellId[1][userCellIndex];
+
+        // cellTracker[userCellIndex].value = userCellId[1][userCellIndex];
+      });
+      cellTracker[userCellIndex].addEventListener("focusout", function () {
+        userCellId[1].splice(
           userCellIndex,
           1,
           cellTracker[userCellIndex].value
         );
-        UsercellId[2].splice(
+        userCellId[2].splice(
           userCellIndex,
           1,
           cellTracker[userCellIndex].value
         );
+        calculate();
+
+        cellTracker[userCellIndex].value = userCellId[2][userCellIndex];
       });
     }
 
     /* debug button */
     const deBuggy = document.createElement("button");
     deBuggy.classList.add("debugcheck");
-    deBuggy.innerText = "debug me";
+    deBuggy.innerText = "debug me in console";
     document.body.appendChild(deBuggy);
     document
       .querySelector(".debugcheck")
       .addEventListener("click", function () {
-        console.log(UsercellId);
+        console.log(userCellId);
       });
-
-    return cellTracker;
   });
 }

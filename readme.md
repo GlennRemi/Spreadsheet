@@ -8,3 +8,6 @@
    -set drawbutton to draw the grid (done)
    ?. use the doubleforloop to track all drawn element from drawer.js in celltracker.js
    ?. collect data from new cells in dynamic system?
+
+implement usercord to string
+implement if statment to check if +-/\*= is in begining, if not add + if it has usercord
