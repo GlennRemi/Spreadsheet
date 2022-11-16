@@ -4,5 +4,4 @@ let userCellId = [[], [], []];
 window.addEventListener("load", () => {
   initiate();
   drawing();
-  // cellTracker();
 });
